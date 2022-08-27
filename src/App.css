@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,600,600i,700&display=swap");
+
+body {
+  font-family: "Source Sans Pro", sans-serif;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style-type: none;
+  outline: none;
+}
+
+.container {
+  width: 100%;
+  margin: 1em auto;
+}
+
+.grid {
+  display: grid;
+  margin-left: 0.5px;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 0.5em;
+  justify-content: center;
+}
+
+h2 {
+  background-color: antiquewhite;
+}
+
+/* login */
+.form-div {
+  height: 45vh;
+  width: 380px;
+  margin: 150px auto;
+  border: 1px solid red;
+  box-shadow: 2px 2px 2px 3px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.login-header {
+  width: 270px;
+  margin-left: auto;
+  margin-right: auto;
+  letter-spacing: 0.5mm;
+}
+
+.login-icon {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  background-color: #dc3545 !important;
+}
+
+.error {
+  color: red;
+  margin-top: 15px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.success {
+  color: green;
+  margin-top: 15px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.btn-danger {
+  letter-spacing: 0.3mm;
+}
+button:disabled {
+  opacity: 0.35;
+  letter-spacing: 0.3mm;
+}
+
+.email-input,
+.password-input {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  width: 270px;
+  letter-spacing: 0.1mm;
+}
