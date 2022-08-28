@@ -89,7 +89,7 @@ function Login2() {
                 name="password"
                 autoComplete="on"
                 ref={passwordRef}
-                className="password-input mt-4"
+                className="password-input mt-3"
                 placeholder="Password"
                 value={password}
                 onChange={handlePassword}
@@ -101,7 +101,7 @@ function Login2() {
             </div>
             <div className="text-center">
               <button
-                className="btn btn-danger mt-3 w-50 fs-5 "
+                className="btn btn-danger mt-2 w-50 fs-5 "
                 disabled={!isValid}
               >
                 Login
