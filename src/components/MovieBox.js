@@ -28,8 +28,8 @@ const MovieBox = ({
             View More
           </button>
           <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title className="text-danger fs-5 fw-bold">
+            <Modal.Header closeButton className="bg-danger">
+              <Modal.Title className="modal-title text-light fs-5 fw-bold ">
                 MOVIE DETAILS
               </Modal.Title>
             </Modal.Header>
@@ -41,13 +41,12 @@ const MovieBox = ({
                 alt=""
               />
               <h4>{titel}</h4>
-              <h5 className="text-danger">IMDB: {vote_average}</h5>
-              <h5 className="text-danger">Date: {release_date}</h5>
-              <br></br>
-              <h6 className="text-danger">Overview</h6>
-              <p>{overview}</p>
+              <h6 className="text-danger fw-bold">IMDB: {vote_average}</h6>
+              <h6 className="text-danger fw-bold">DATE: {release_date}</h6>
+              <h6 className="text-danger mt-4 fw-bold">OVERVIEW</h6>
+              <p className="movibox-text">{overview}</p>
             </Modal.Body>
-            <Modal.Footer>
+            <Modal.Footer className="bg-secondary">
               <Button className="btn btn-danger" onClick={handleClose}>
                 Close
               </Button>

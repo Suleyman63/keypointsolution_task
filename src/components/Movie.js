@@ -1,15 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import "./App.css";
+import "../style/App.css";
 import MovieBox from "./MovieBox";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {
-  Navbar,
-  Container,
-  Nav,
-  Form,
-  FormControl,
-  Button,
-} from "react-bootstrap";
+import { Navbar, Container, Form, FormControl, Button } from "react-bootstrap";
 
 const API_URL = `https://api.themoviedb.org/3/movie/popular?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US`;
 
@@ -44,12 +37,13 @@ function Movie() {
     setQuery(e.target.value);
   };
 
+  // input focus
   const focusDiv = useRef();
-
   useEffect(() => {
     if (focusDiv.current) focusDiv.current.focus();
   }, [focusDiv]);
 
+  // localstrorage clear
   const handleClick = () => {
     localStorage.clear();
     window.location.reload();
@@ -58,14 +52,14 @@ function Movie() {
     <>
       <Navbar bg="danger" expand="lg" variant="dark">
         <Container fluid>
-          <Navbar.Brand href="/home" className="fw-bold fs-3 mx-5">
+          <Navbar.Brand href="/movie" className="fw-bold fs-3 mx-5">
             MOVIE APP
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="navbarScroll"></Navbar.Toggle>
-          <Navbar.Collapse id="nabarScroll">
-            <Nav className="" navbarScroll></Nav>
-          </Navbar.Collapse>
-          <Button onClick={handleClick} variant="secondary" className="mx-5">
+          <Button
+            onClick={handleClick}
+            variant="secondary"
+            className="logout-btn mx-5"
+          >
             Logout
           </Button>
         </Container>
@@ -80,7 +74,7 @@ function Movie() {
           <FormControl
             type="search"
             placeholder="Movie Search"
-            className="input-search"
+            className="input-search mx-1 p-2"
             aria-label="search"
             name="query"
             value={query}
@@ -90,7 +84,7 @@ function Movie() {
           <Button
             variant="danger"
             type="submit"
-            className="srch-btn mx-1"
+            className="srch-btn mx-1 p-2 "
             disabled={!query}
           >
             Search

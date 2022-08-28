@@ -1,93 +1,116 @@
-import {
-  Grid,
-  Paper,
-  Avatar,
-  TextField,
-  Button,
-  Typography,
-} from "@material-ui/core";
-import "./Login.css";
+import React, { useRef, useState, useEffect } from "react";
+import Movie from "./Movie";
+import "../style/App.css";
+import { Avatar } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import { Formik, Form, Field } from "formik";
-import * as Yup from "yup";
-import { toast } from "react-toastify";
-import { useEffect, useRef } from "react";
 
-function Login() {
-  const SignUpSchema = Yup.object().shape({
-    email: Yup.string()
-      .min(6, "Should be 6 character long")
-      .max(15, "should not exceed 15 characters")
-      .required("Required"),
+const regex =
+  /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
 
-    password: Yup.string()
-      .min(6, "Should be 6 character long")
-      .max(15, "should not exceed 15 characters")
-      .required("Required"),
-  });
+function Login2() {
+  const [isValid, setIsValid] = useState(false);
+  const [message, setMessage] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const focusDiv = useRef();
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const getEmail = localStorage.getItem("emailData");
+  const getPassword = localStorage.getItem("passwordData");
+
+  const handleSubmit = () => {
+    if (
+      emailRef.current.value === "abc@gmail.com" &&
+      passwordRef.current.value === "123456"
+    ) {
+      localStorage.setItem("emailData", "abc@gmail.com");
+      localStorage.setItem("passwordData", "123456");
+    }
+  };
+
+  // ==============================
+
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+  };
 
   useEffect(() => {
-    if (focusDiv.current) focusDiv.current.focus();
-  }, [focusDiv]);
+    validateEmail();
+  });
+
+  const validateEmail = () => {
+    console.log(regex.test(email), regex.test(password));
+    console.log(email, password);
+    if (regex.test(email) && password.length >= 6) {
+      setMessage("Your email and password is valid!");
+      setIsValid(true);
+      console.log("SUCCESS");
+    } else {
+      setIsValid(false);
+      setMessage("Please enter a valid email or password!");
+    }
+  };
+
   return (
-    <Grid>
-      <Paper elevation={10} className="login-form">
-        <Grid align="center">
-          <Avatar color="secondary">
+    <div>
+      {getEmail && getPassword ? (
+        <Movie />
+      ) : (
+        <div className="form-div">
+          <Avatar className="login-icon">
             <LockOutlinedIcon />
           </Avatar>
-          <Typography variant="h6" color="secondary" className="mt-5 fw-bold">
-            LOGIN
-          </Typography>
-        </Grid>
-        <Formik
-          initialValues={{ email: "", password: "" }}
-          validationSchema={SignUpSchema}
-          onSubmit={(value) => {
-            toast.success("login is successfully", { position: "top-center" });
-          }}
-        >
-          {({ errors, touched }) => (
-            <Form>
-              <Field
-                as={TextField}
-                className="mt-4"
-                label="Email"
-                name="email"
-                placeholder="Enter email"
-                fullWidth
-                ref={focusDiv}
+          <div className="login-header">
+            <h4 className="mt-4 text-center text-light fw-bold bg-danger fs-3 p-1 rounded">
+              LOGIN
+            </h4>
+          </div>
+          <form className="m-4" onSubmit={handleSubmit}>
+            <div className="text-center">
+              <input
+                id="ss"
+                type="email"
+                ref={emailRef}
+                className="email-input mt-2"
+                placeholder="Email"
+                value={email}
+                onChange={handleEmail}
+                required
+                autoFocus
               />
-              {errors.email && touched.email ? <div>{errors.email}</div> : null}
-              <Field
-                as={TextField}
-                className="mt-4"
-                label="Password"
-                name="password"
-                placeholder="Enter password"
+            </div>
+            <div className="text-center ">
+              <input
                 type="password"
-                fullWidth
+                name="password"
+                autoComplete="on"
+                ref={passwordRef}
+                className="password-input mt-4"
+                placeholder="Password"
+                value={password}
+                onChange={handlePassword}
+                required
               />
-              {errors.password && touched.password ? (
-                <div>{errors.password}</div>
-              ) : null}
-              <Button
-                className="mt-4 fw-bold"
-                type="submit"
-                variant="contained"
-                color="secondary"
-                fullWidth
+            </div>
+            <div className={`message ${isValid ? "success" : "error"}`}>
+              {message}
+            </div>
+            <div className="text-center">
+              <button
+                className="btn btn-danger mt-3 w-50 fs-5 "
+                disabled={!isValid}
               >
-                SUBMIT
-              </Button>
-            </Form>
-          )}
-        </Formik>
-      </Paper>
-    </Grid>
+                Login
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
+    </div>
   );
 }
-
-export default Login;
+export default Login2;
