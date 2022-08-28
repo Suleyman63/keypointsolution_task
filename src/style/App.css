@@ -24,10 +24,13 @@ body {
 }
 
 .srch-btn,
-.logout-btn,
 .btn-danger {
   letter-spacing: 0.2mm;
   width: 100px;
+}
+
+.logout-btn {
+  letter-spacing: 0.2mm;
 }
 
 h2 {
@@ -47,7 +50,7 @@ h2 {
 /* login */
 .form-div {
   height: 45vh;
-  width: 380px;
+  width: 360px;
   margin: 150px auto;
   border: 1px solid red;
   box-shadow: 2px 2px 2px 3px;

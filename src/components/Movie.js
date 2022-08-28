@@ -58,7 +58,7 @@ function Movie() {
           <Button
             onClick={handleClick}
             variant="secondary"
-            className="logout-btn mx-5"
+            className="logout-btn mx-4"
           >
             Logout
           </Button>
