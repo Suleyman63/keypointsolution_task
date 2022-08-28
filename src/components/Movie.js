@@ -52,13 +52,13 @@ function Movie() {
     <>
       <Navbar bg="danger" expand="lg" variant="dark">
         <Container fluid>
-          <Navbar.Brand href="/movie" className="fw-bold fs-3 mx-5">
+          <Navbar.Brand href="/movie" className="fw-bold fs-3 mx-4">
             MOVIE APP
           </Navbar.Brand>
           <Button
             onClick={handleClick}
             variant="secondary"
-            className="logout-btn mx-4"
+            className="logout-btn mx-3"
           >
             Logout
           </Button>
